@@ -2,13 +2,11 @@
 Console.Clear();
 Console.WriteLine("Введите число:");
 int number = int.Parse(Console.ReadLine()!);
-int numberone = 1;
+int numberone = 2;
 
-while (numberone < number)
+while (numberone <= number)
 {
-    if (numberone % 2 == 0)
-    {
-        Console.WriteLine($"Четные числа {numberone}+");
-        numberone++;
-    }
+    Console.Write(numberone + ",");
+
+    numberone = numberone + 2;
 }
