@@ -5,7 +5,7 @@ Console.Clear();
 int[] GetArrayFromUser(string message) // запрос элементов массива у пользователя 
 {
    Console.WriteLine(message);
-   int[] array = Array.ConvertAll(Console.ReadLine().Split(), int.Parse);
+   int[] array = Array.ConvertAll(Console.ReadLine()!.Split(), int.Parse);
    return array;
 }
 void showArray(int[] array)  // функция для вывода массива , что бы после последнего символа не было запятой
