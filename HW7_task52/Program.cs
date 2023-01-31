@@ -15,14 +15,14 @@ void printInColor(string data)
     Console.ResetColor();
 }
 
-int[,] Get2DIntArray(int colLength, int rowLenght, int start, int end)
+int[,] Get2Darray(int rowlenght, int cowlenght, int start, int end)
 {
-    int[,] array = new int[colLength, rowLenght];
+    int[,] array = new int[rowlenght, cowlenght];
 
-    for (int i = 0; i < colLength; i++)
+    for (int i = 0; i < rowlenght; i++)
     {
 
-        for (int j = 0; j < rowLenght; j++)
+        for (int j = 0; j < cowlenght; j++)
         {
             array[i, j] = new Random().Next(start, end + 1);
         }
@@ -42,28 +42,48 @@ void print2DArray(int[,] array)
     }
 
 }
-double GetAruthmeticMeanOfRow(int[,] array)
+void showArray(float[] array)  // функция для вывода массива , что бы после последнего символа не было запятой
 {
-    double avg = 0;
-    double sumofcolumn =0;
-    for (int j = 0; j < array.GetLength(1); j++)
+    Console.Write($"среднее арифметическое каждого из столбцов равно[");
+    for (int i = 0; i < array.Length; i++)
     {
-        
-        for (int i = 0; i < array.GetLength(0);)
+        if (i != array.Length - 1) // !=  -оператор не равно
         {
-            sumofcolumn = (sumofcolumn + array[i, j]);
-            avg = sumofcolumn / array.GetLength(1)+1;
-            i++;
-        }  
+            Console.Write($"{array[i]}, | ");
+        }
+        else
+        {
+            Console.WriteLine($"{array[i]}]");
+        }
     }
-    return avg;
+}
+float[] GetAverageOfRow(int[,] array)
+{
+
+    float[] avarageArray = new float[array.GetLength(1)];
+
+    float summa = 0;
+    int rows = array.GetLength(0);
+    int columns = array.GetLength(1);
+
+
+    for (int j = 0; j < columns; j++)
+    {
+        for (int i = 0; i < rows; i++)
+        {
+            summa += array[i, j];
+        }
+        avarageArray[j] = summa / rows;
+        summa = 0;
+    }
+    return avarageArray;
 }
 
 //int n = GetDataFromUser("введите количество строк");
 //int m = GetDataFromUser("введите количество столбцов");
-int[,] array = Get2DIntArray(3, 4, 0, 10);
+int[,] array = Get2Darray(3, 4, 0, 10);
 print2DArray(array);
 Console.WriteLine();
-double avg = GetAruthmeticMeanOfRow(array);
-Console.WriteLine(avg + ",");
+float[] arrayOfAverage = GetAverageOfRow(array);
+showArray(arrayOfAverage);
 
