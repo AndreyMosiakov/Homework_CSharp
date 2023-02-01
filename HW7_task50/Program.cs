@@ -8,7 +8,7 @@ int GetDataFromUser(string messege)
     Console.ForegroundColor = ConsoleColor.DarkGreen;
     Console.WriteLine(messege);
     Console.ResetColor();
-    int result = int.Parse(Console.ReadLine());
+    int result = int.Parse(Console.ReadLine()!);
     return result;
 }
 int[,] Get2Darray(int rowlenght, int cowlenght, int start, int end)
@@ -37,19 +37,26 @@ void print2DArray(int[,] array)
         Console.WriteLine();
     }
 }
-void FindElementOfPosition(int[,] array, int number1, int number2)
+void CheckOutOfBounds(int[,] array, int number1, int number2)
+{
+    if (number1 >array.GetLength(0) || number2 >array.GetLength(1))
+    {
+        Console.Write("заданной позиции не существует в данном массиве");    
+    }  
+}
+
+int FindElementOfPosition(int[,] array, int number1, int number2)
 {
     int element = array[number1, number2];
     for (int i = 0; i < array.GetLength(0); i++)
     {
         for (int j = 0; j < array.GetLength(1); j++)
         {
-            if (array[i,j] = array[number1, number2]);
+            if (i==number1 && j== number2)
             {
                 element = array[i, j];
-            }       
-        }
-        
+            }    
+        } 
     }
     return element;
 }
@@ -59,6 +66,7 @@ int number1=GetDataFromUser("введите позицию элемента в �
 int number2=GetDataFromUser("введите позицию элемента в столбце");
 int [,] array = Get2Darray(5,5,1,20 );
 print2DArray(array);
+CheckOutOfBounds(array,number1,number2);
 Console.WriteLine();
 int element = FindElementOfPosition(array,number1,number2);
-Console.WriteLine ($" на заданной позиции {number1},{number2} находится элемент со значением {element}"); 
+Console.WriteLine ($" на заданной позиции массива [{number1},{number2}] находится элемент со значением {element}"); 
